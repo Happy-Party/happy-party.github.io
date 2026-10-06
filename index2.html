@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Party - Stress-Free Pre-Packed Kids' Party Bags AU</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .product-image {
+            background-image: url('image_1.png');
+            background-size: 300% 300%; /* Total image is 3x3 grid */
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans">
+
+    <!-- Header -->
+    <header class="bg-white sticky top-0 z-50 shadow-sm">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <i data-lucide="party-popper" class="h-8 w-8 text-orange-500"></i>
+                <span class="text-2xl font-extrabold text-teal-600">Happy Party</span>
+            </div>
+            <div class="flex items-center gap-6 text-sm font-medium text-gray-700">
+                <a href="#pre-designed" class="hover:text-teal-600">Themes</a>
+                <a href="#custom-bags" class="hover:text-teal-600">Custom</a>
+                <a href="#faq" class="hover:text-teal-600">FAQ</a>
+                <a href="#inquiry" class="bg-teal-600 text-white px-4 py-2 rounded-full hover:bg-teal-700">Inquire</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-white py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto text-center">
+            <h1 class="text-5xl md:text-6xl font-extrabold text-gray-950 mb-6 leading-tight">Your child's party, simplified.</h1>
+            <p class="text-xl text-gray-700 mb-10 max-w-2xl mx-auto">Skip the stress of shopping and assembling. Get premium, pre-packed party bags delivered in a box, ready to open and hand out. Saving you time for what matters.</p>
+            <div class="flex gap-4 justify-center">
+                <a href="#pre-designed" class="bg-orange-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-orange-600">Shop Themes</a>
+                <a href="#custom-bags" class="bg-gray-200 text-gray-900 px-8 py-3 rounded-full font-semibold hover:bg-gray-300">Build Your Own</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pre-designed Party Bags (Interactive Catalog) -->
+    <section id="pre-designed" class="py-16 bg-gray-100 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-extrabold text-gray-950 mb-10">Popular Party Themes</h2>
+            <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Products will be injected here by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Bag Configuration -->
+    <section id="custom-bags" class="py-16 bg-white px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-extrabold text-gray-950 mb-10">Personalise Your Bags</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-start bg-gray-50 p-8 rounded-2xl shadow-inner">
+                <form id="custom-form" class="space-y-6">
+                    <div>
+                        <label for="quantity" class="block text-sm font-medium text-gray-700 mb-1">Quantity of Bags (e.g., 10)</label>
+                        <input type="number" id="quantity" min="1" class="w-full border-gray-300 rounded-lg p-3" placeholder="Number of guests">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Dietary Requirements</label>
+                        <div class="flex flex-wrap gap-3 text-sm">
+                            <label class="inline-flex items-center"><input type="checkbox" name="diet" value="lactose-free" class="rounded text-teal-600"><span class="ml-2">Lactose-free</span></label>
+                            <label class="inline-flex items-center"><input type="checkbox" name="diet" value="nut-free" class="rounded text-teal-600"><span class="ml-2">Nut-free</span></label>
+                            <label class="inline-flex items-center"><input type="checkbox" name="diet" value="gluten-free" class="rounded text-teal-600"><span class="ml-2">Gluten-free</span></label>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Bag Content Preferences</label>
+                        <div class="flex flex-wrap gap-3 text-sm">
+                            <label class="inline-flex items-center"><input type="checkbox" name="content" value="lolly-free" class="rounded text-teal-600"><span class="ml-2">Lolly-free</span></label>
+                            <label class="inline-flex items-center"><input type="checkbox" name="content" value="candy-only" class="rounded text-teal-600"><span class="ml-2">Just candy</span></label>
+                            <label class="inline-flex items-center"><input type="checkbox" name="content" value="no-plastic-toys" class="rounded text-teal-600"><span class="ml-2">Without plastic toys</span></label>
+                        </div>
+                    </div>
+                    <button type="button" onclick="showOrderConfirmation('Customised')" class="w-full bg-teal-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-teal-700">Pre-Order Custom Bags</button>
+                </form>
+                <div class="p-8 border-l border-gray-200">
+                    <h3 class="text-xl font-bold text-gray-950 mb-4">How it works</h3>
+                    <p class="text-gray-700 leading-relaxed mb-6">Simply fill out your requirements. We prepare each bag individually according to your needs, then pack them all into one box for shipping. We'll follow up to confirm final contents and send you a secure payment link.</p>
+                    <p class="text-sm text-gray-500">*Final pricing depends on selection. Bulk discounts are available.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-gray-100 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-extrabold text-gray-950 mb-10 text-center">What Parents Are Saying</h2>
+            <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <p class="text-gray-700 mb-4">"The best decision for my son's party! The bags looked amazing, and I saved a whole evening of shopping. Highly recommend Happy Party!"</p>
+                    <p class="font-semibold text-gray-950">- Sarah M., Sydney</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <p class="text-gray-700 mb-4">"Absolutely fantastic. Even with last-minute dietary changes, they sorted it out. The boxes are so convenient—just open and go!"</p>
+                    <p class="font-semibold text-gray-950">- Dave K., Melbourne</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <p class="text-gray-700 mb-4">"High-quality items and beautiful bags. They really deliver on convenience. My daughter loved her ballerina party bags!"</p>
+                    <p class="font-semibold text-gray-950">- Aisha L., Brisbane</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ & Inquiry -->
+    <section id="faq" class="py-16 bg-white px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16">
+            <div>
+                <h2 class="text-3xl font-extrabold text-gray-950 mb-10">Frequently Asked Questions</h2>
+                <div class="space-y-6 text-gray-700">
+                    <details class="bg-gray-50 p-5 rounded-lg border border-gray-100"><summary class="font-semibold cursor-pointer text-gray-950">How long does shipping take within Australia?</summary><p class="mt-3">Usually 3-7 business days, depending on your location. We recommend ordering at least 2 weeks in advance.</p></details>
+                    <details class="bg-gray-50 p-5 rounded-lg border border-gray-100"><summary class="font-semibold cursor-pointer text-gray-950">Can I mix and match themes?</summary><p class="mt-3">Not within a single pre-built box, but please use our 'Personalise Your Bags' section for custom orders!</p></details>
+                    <details class="bg-gray-50 p-5 rounded-lg border border-gray-100"><summary class="font-semibold cursor-pointer text-gray-950">What if I have an urgent order?</summary><p class="mt-3">Please submit an inquiry form below, and we will do our best to accommodate rush requests.</p></details>
+                </div>
+            </div>
+            <div id="inquiry">
+                <h2 class="text-3xl font-extrabold text-gray-950 mb-10">Submit a New Question</h2>
+                <form class="space-y-6 bg-gray-50 p-8 rounded-2xl shadow-inner">
+                    <input type="text" placeholder="Your Name" class="w-full border-gray-300 rounded-lg p-3">
+                    <input type="email" placeholder="Your Email" class="w-full border-gray-300 rounded-lg p-3">
+                    <textarea placeholder="Your Question or Inquiry (e.g., specific item requests)" rows="4" class="w-full border-gray-300 rounded-lg p-3"></textarea>
+                    <button type="submit" class="w-full bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600">Send Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart & Checkout Slide-over -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+        <div class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" onclick="toggleCart()"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex">
+            <div class="relative w-screen max-w-md">
+                <div class="h-full flex flex-col bg-white shadow-xl overflow-y-scroll">
+                    <div class="flex-1 py-6 px-4 sm:px-6">
+                        <div class="flex items-start justify-between mb-8">
+                            <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Shopping Cart</h2>
+                            <button type="button" class="ml-3 h-7 flex items-center" onclick="toggleCart()">
+                                <span class="sr-only">Close panel</span>
+                                <i data-lucide="x" class="h-6 w-6 text-gray-400"></i>
+                            </button>
+                        </div>
+                        <div id="cart-items" class="flow-root space-y-4">
+                            <!-- Items inserted here by JS -->
+                        </div>
+                    </div>
+                    <div class="border-t border-gray-200 py-6 px-4 sm:px-6">
+                        <div class="flex justify-between text-base font-medium text-gray-900 mb-2">
+                            <p>Subtotal</p>
+                            <p id="cart-subtotal">$0.00</p>
+                        </div>
+                        <p class="text-sm text-gray-500 mb-6">Shipping calculated at checkout.</p>
+                        <button onclick="openCheckout()" class="w-full bg-teal-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-teal-700">Checkout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" onclick="closeCheckout()"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div class="inline-block align-middle bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-xl sm:w-full">
+                <form class="p-8 space-y-6">
+                    <div class="flex items-center justify-between mb-8">
+                        <h3 class="text-lg font-medium text-gray-900" id="modal-title">Complete Your Order</h3>
+                        <button type="button" class="ml-3 h-7 flex items-center" onclick="closeCheckout()">
+                            <span class="sr-only">Close panel</span>
+                            <i data-lucide="x" class="h-6 w-6 text-gray-400"></i>
+                        </button>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Full Shipping Name</label>
+                        <input type="text" required class="w-full border-gray-300 rounded-lg p-3">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Address & Postcode</label>
+                        <input type="text" required class="w-full border-gray-300 rounded-lg p-3">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Party Date</label>
+                        <input type="date" required id="party-date" class="w-full border-gray-300 rounded-lg p-3" onchange="checkShippingTimeline()">
+                        <p id="shipping-warning" class="text-xs mt-1 text-red-500 hidden">*Minimum 2 weeks notice recommended for shipping within Australia.</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Card Details (Simulated)</label>
+                        <div class="w-full border border-gray-300 rounded-lg p-3 text-gray-500 bg-gray-50">XXXX XXXX XXXX XXXX</div>
+                    </div>
+                    <button type="button" onclick="showToast('Order successful! A payment link and receipt will be emailed.')" class="w-full bg-teal-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-teal-700">Simulate Payment</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-4 right-4 bg-gray-900 text-white px-6 py-3 rounded-lg text-sm shadow-lg hidden"></div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 border-t border-gray-200 text-sm text-gray-600 px-4 sm:px-6 lg:px-8 py-8">
+        <div class="max-w-7xl mx-auto text-center">
+            <p>&copy; 2024 Happy Party. All rights reserved.</p>
+            <p>Based in Australia. Shipping within Australia only.</p>
+        </div>
+    </footer>
+
+    <script>
+        const products = [
+            { id: 1, name: 'Clown Theme', price: 45, items: '3d printed clown body w/ springing head; necklace with gem', spritePosition: '0% 0%' },
+            { id: 2, name: 'Ballerina Theme', price: 50, items: 'Choco coins; tiara; lolly bracelets; nail polish', spritePosition: '50% 0%' },
+            { id: 3, name: 'Dinosaur Theme', price: 48, items: 'Choco coins; lolly bracelets; 3d dino', spritePosition: '100% 0%' },
+            { id: 4, name: 'Timezone Theme', price: 65, items: 'Timezone gift card to come back with credits; sticky hand; chocolate coins; 3d dragon; lolly bracelet; mini gameboy', spritePosition: '0% 50%' },
+            { id: 5, name: 'Skate Paradise Theme', price: 55, items: '3d printed skate; choco coins; lolly bracelet', spritePosition: '50% 50%' },
+            { id: 6, name: 'Halloween Theme', price: 45, items: '3d printed ghost keyring glow in the dark; eyeball candies; teeth gummies; plastic fangs', spritePosition: '100% 50%' },
+            { id: 7, name: 'Christmas Theme', price: 50, items: 'Festive chocolates, reindeer toy, stickers', spritePosition: '0% 100%' },
+            { id: 8, name: 'Easter Theme', price: 48, items: 'Chocolate eggs, bunny ears, hopping toy', spritePosition: '50% 100%' },
+            { id: 9, name: 'Harry Potter Theme', price: 60, items: 'Movie ticket, Harry Potter head bust', spritePosition: '100% 100%' },
+        ];
+
+        let cart = [];
+
+        function renderProducts() {
+            const list = document.getElementById('product-list');
+            list.innerHTML = products.map(p => `
+                <div class="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-shadow border border-gray-100 p-6 flex flex-col">
+                    <div class="w-full h-48 rounded-xl product-image mb-5" style="background-position: ${p.spritePosition};"></div>
+                    <div class="flex-grow">
+                        <h3 class="text-xl font-bold text-gray-950 mb-2">${p.name}</h3>
+                        <p class="text-sm text-gray-600 mb-6 leading-relaxed">${p.items}</p>
+                    </div>
+                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+                        <p class="text-2xl font-extrabold text-teal-600">$${p.price.toFixed(2)}</p>
+                        <button onclick="addToCart(${p.id})" class="bg-teal-600 text-white text-sm px-5 py-2.5 rounded-full font-semibold hover:bg-teal-700 flex items-center gap-2">
+                           <i data-lucide="plus-circle" class="h-4 w-4"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        function addToCart(productId) {
+            const p = products.find(prod => prod.id === productId);
+            const inCart = cart.find(item => item.id === productId);
+            if (inCart) {
+                inCart.quantity++;
+            } else {
+                cart.push({...p, quantity: 1});
+            }
+            updateCart();
+            toggleCart(true);
+            showToast(`${p.name} added to cart.`);
+        }
+
+        function updateCart() {
+            const cartList = document.getElementById('cart-items');
+            cartList.innerHTML = cart.map(item => `
+                <div class="flex items-center gap-4 py-3 border-b border-gray-100">
+                    <div class="h-16 w-16 flex-shrink-0 product-image rounded border" style="background-size: cover; background-position: ${item.spritePosition};"></div>
+                    <div>
+                        <p class="font-medium text-gray-900">${item.name}</p>
+                        <p class="text-sm text-gray-500">Qty: ${item.quantity}</p>
+                    </div>
+                    <p class="ml-auto text-sm font-semibold">$${(item.price * item.quantity).toFixed(2)}</p>
+                </div>
+            `).join('');
+
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            document.getElementById('cart-subtotal').innerText = `$${subtotal.toFixed(2)}`;
+        }
+
+        function toggleCart(show) {
+            const cartDrawer = document.getElementById('cart-drawer');
+            if (show === true) { cartDrawer.classList.remove('hidden'); }
+            else if (show === false) { cartDrawer.classList.add('hidden'); }
+            else { cartDrawer.classList.toggle('hidden'); }
+        }
+
+        function openCheckout() {
+            if (cart.length === 0) { showToast('Cart is empty.'); return; }
+            toggleCart(false);
+            document.getElementById('checkout-modal').classList.remove('hidden');
+        }
+
+        function closeCheckout() { document.getElementById('checkout-modal').classList.add('hidden'); }
+
+        function checkShippingTimeline() {
+            const dateInput = document.getElementById('party-date');
+            const warning = document.getElementById('shipping-warning');
+            const date = new Date(dateInput.value);
+            const twoWeeksFromNow = new Date();
+            twoWeeksFromNow.setDate(twoWeeksFromNow.getDate() + 14);
+            if (date < twoWeeksFromNow) { warning.classList.remove('hidden'); }
+            else { warning.classList.add('hidden'); }
+        }
+
+        function showOrderConfirmation(type) {
+            showToast(`Form submitted! A final receipt and secure payment link for your ${type} order will be emailed within 24 hours.`);
+            if(type === 'Customised') document.getElementById('custom-form').reset();
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.innerText = message;
+            toast.classList.remove('hidden');
+            setTimeout(() => { toast.classList.add('hidden'); closeCheckout(); cart=[]; updateCart(); }, 4000);
+        }
+
+        window.onload = function() { renderProducts(); lucide.createIcons(); };
+    </script>
+</body>
+</html>
