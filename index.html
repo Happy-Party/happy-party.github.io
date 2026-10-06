@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Party | Pre-packed Kids Party Bags</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.260.0/lucide.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Nunito', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fdf4ff',
+                            100: '#fae8ff',
+                            200: '#f5d0fe',
+                            300: '#f0abfc',
+                            400: '#e879f9',
+                            500: '#d946ef', // Main brand color
+                            600: '#c026d3',
+                            700: '#a21caf',
+                            800: '#86198f',
+                            900: '#701a75',
+                        },
+                        accent: {
+                            yellow: '#fef08a',
+                            blue: '#bfdbfe',
+                            green: '#bbf7d0'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for cart */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+        .toast-enter {
+            transform: translateY(100%);
+            opacity: 0;
+        }
+        .toast-enter-active {
+            transform: translateY(0);
+            opacity: 1;
+            transition: all 0.3s ease-out;
+        }
+        .toast-exit {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .toast-exit-active {
+            transform: translateY(100%);
+            opacity: 0;
+            transition: all 0.3s ease-in;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50 flex flex-col min-h-screen">
+
+    <nav class="fixed w-full bg-white/90 backdrop-blur-md z-40 border-b border-gray-100 shadow-sm transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="w-10 h-10 bg-brand-500 rounded-xl flex items-center justify-center text-white shadow-lg shadow-brand-500/30">
+                        <i data-lucide="party-popper"></i>
+                    </div>
+                    <span class="font-display font-bold text-2xl text-gray-900 tracking-tight">Happy Party</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#collections" class="text-gray-600 hover:text-brand-500 font-medium transition-colors">Party Bags</a>
+                    <a href="#custom" class="text-gray-600 hover:text-brand-500 font-medium transition-colors">Customise</a>
+                    <a href="#reviews" class="text-gray-600 hover:text-brand-500 font-medium transition-colors">Happy Parents</a>
+                    <a href="#faq" class="text-gray-600 hover:text-brand-500 font-medium transition-colors">FAQ</a>
+                </div>
+                <div class="flex items-center">
+                    <button onclick="toggleCart()" class="relative p-2 text-gray-600 hover:text-brand-500 transition-colors focus:outline-none">
+                        <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+                        <span id="cart-count" class="absolute top-0 right-0 bg-brand-500 text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center transform translate-x-1 -translate-y-1 shadow-sm border border-white">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-20 lg:pt-40 lg:pb-28 px-4 overflow-hidden relative">
+        <!-- Background decorative blobs -->
+        <div class="absolute top-20 left-10 w-64 h-64 bg-accent-yellow/40 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
+        <div class="absolute top-40 right-10 w-72 h-72 bg-brand-200/40 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-8 left-40 w-72 h-72 bg-accent-blue/40 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
+
+        <div class="max-w-7xl mx-auto relative z-10 text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-50 border border-brand-100 text-brand-700 text-sm font-medium mb-8 shadow-sm">
+                <span class="flex h-2 w-2 relative">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
+                </span>
+                Delivering Australia-wide
+            </div>
+            <h1 class="font-display text-5xl md:text-7xl font-extrabold text-gray-900 tracking-tight mb-6 leading-tight">
+                Stress-free party bags, <br class="hidden md:block" />
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-purple-600">delivered in a box.</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed">
+                Save hours of planning and running around. Happy Party creates premium, exciting, and ready-to-hand-out party bags for kids aged 3-9. 
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#collections" class="px-8 py-4 bg-brand-500 text-white rounded-full font-bold text-lg hover:bg-brand-600 transition-all shadow-lg shadow-brand-500/30 hover:shadow-brand-500/50 transform hover:-translate-y-0.5">
+                    Shop Pre-designed Bags
+                </a>
+                <a href="#custom" class="px-8 py-4 bg-white text-gray-800 rounded-full font-bold text-lg border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all shadow-sm">
+                    Build Custom Bags
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="collections" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-4">Choose Your Theme</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">Hand-picked goodies packed in premium, eco-friendly boxes. Just add to cart, and we'll handle the rest.</p>
+            </div>
+
+            <!-- Product Grid (Populated by JS) -->
+            <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Products will be injected here -->
+            </div>
+        </div>
+    </section>
+
+    <section id="custom" class="py-20 bg-brand-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-brand-100">
+                <div class="grid grid-cols-1 lg:grid-cols-2">
+                    <div class="p-10 md:p-14 flex flex-col justify-center bg-gradient-to-br from-white to-brand-50">
+                        <div class="w-12 h-12 bg-accent-yellow rounded-2xl flex items-center justify-center text-yellow-700 mb-6 shadow-sm">
+                            <i data-lucide="settings-2"></i>
+                        </div>
+                        <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-4">Customise Your Order</h2>
+                        <p class="text-gray-600 mb-8 text-lg">Need something specific? Set your dietary and content preferences to apply to your entire order. We'll swap items out to match your needs perfectly.</p>
+                        
+                        <div class="space-y-6">
+                            <!-- Dietary -->
+                            <div>
+                                <h3 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                                    <i data-lucide="apple" class="w-5 h-5 text-green-500"></i> Dietary Requirements
+                                </h3>
+                                <div class="flex flex-wrap gap-3">
+                                    <button class="pref-btn px-4 py-2 rounded-full border border-gray-200 text-sm font-medium text-gray-600 hover:border-brand-500 hover:text-brand-600 transition-colors" data-pref="nut-free">Nut-Free</button>
+                                    <button class="pref-btn px-4 py-2 rounded-full border border-gray-200 text-sm font-medium text-gray-600 hover:border-brand-500 hover:text-brand-600 transition-colors" data-pref="lactose-free">Lactose-Free</button>
+                                    <button class="pref-btn px-4 py-2 rounded-full border border-gray-200 text-sm font-medium text-gray-600 hover:border-brand-500 hover:text-brand-600 transition-colors" data-pref="gluten-free">Gluten-Free</button>
+                                </div>
+                            </div>
+                            <!-- Contents -->
+                            <div>
+                                <h3 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                                    <i data-lucide="package" class="w-5 h-5 text-blue-500"></i> Bag Contents Type
+                                </h3>
+                                <div class="flex flex-wrap gap-3">
+                                    <button class="pref-btn px-4 py-2 rounded-full border border-gray-200 text-sm font-medium text-gray-600 hover:border-brand-500 hover:text-brand-600 transition-colors" data-pref="no-lollies">Lolly-Free (Toys Only)</button>
+                                    <button class="pref-btn px-4 py-2 rounded-full border border-gray-200 text-sm font-medium text-gray-600 hover:border-brand-500 hover:text-brand-600 transition-colors" data-pref="just-candy">Just Candy (No Toys)</button>
+                                    <button class="pref-btn px-4 py-2 rounded-full border border-gray-200 text-sm font-medium text-gray-600 hover:border-brand-500 hover:text-brand-600 transition-colors" data-pref="no-plastic">Eco-Friendly (No Plastic)</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 pt-6 border-t border-gray-100">
+                            <p class="text-sm text-gray-500">Preferences selected here will be saved to your cart and applied by our packing team.</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-100 relative min-h-[300px]">
+                        <!-- Decorative placeholder image area -->
+                        <img src="https://placehold.co/800x800/d946ef/ffffff?text=Happy+Party+Custom+Box" alt="Custom Party Box" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-3xl font-bold text-gray-900 mb-4">Loved by Aussie Parents</h2>
+                <div class="flex justify-center gap-1 text-yellow-400 mb-4">
+                    <i data-lucide="star" class="fill-current"></i>
+                    <i data-lucide="star" class="fill-current"></i>
+                    <i data-lucide="star" class="fill-current"></i>
+                    <i data-lucide="star" class="fill-current"></i>
+                    <i data-lucide="star" class="fill-current"></i>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-gray-50 p-8 rounded-3xl border border-gray-100 relative">
+                    <i data-lucide="quote" class="absolute top-6 right-6 text-gray-200 w-10 h-10"></i>
+                    <p class="text-gray-600 italic mb-6 relative z-10">"Absolute lifesaver! I completely forgot about party bags until 3 days before. The Dinosaur boxes arrived just in time and the kids went wild for the 3D dinos."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold">SM</div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Sarah M.</h4>
+                            <p class="text-sm text-gray-500">Sydney, NSW</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-gray-50 p-8 rounded-3xl border border-gray-100 relative">
+                    <i data-lucide="quote" class="absolute top-6 right-6 text-gray-200 w-10 h-10"></i>
+                    <p class="text-gray-600 italic mb-6 relative z-10">"The quality of the items in the Harry Potter bags was fantastic. It's so hard to find good quality, non-junk items but Happy Party nailed it. Will use again!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center text-brand-600 font-bold">JW</div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Jessica W.</h4>
+                            <p class="text-sm text-gray-500">Melbourne, VIC</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-gray-50 p-8 rounded-3xl border border-gray-100 relative">
+                    <i data-lucide="quote" class="absolute top-6 right-6 text-gray-200 w-10 h-10"></i>
+                    <p class="text-gray-600 italic mb-6 relative z-10">"Being able to request nut-free bags for the whole party gave me such peace of mind. The packaging is gorgeous too. Highly recommend."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-bold">DT</div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">David T.</h4>
+                            <p class="text-sm text-gray-500">Brisbane, QLD</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                
+                <!-- FAQ -->
+                <div>
+                    <h2 class="font-display text-3xl font-bold text-gray-900 mb-8">Got Questions?</h2>
+                    <div class="space-y-4">
+                        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                            <h3 class="font-bold text-gray-900 mb-2">How long does shipping take?</h3>
+                            <p class="text-gray-600 text-sm">We recommend ordering at least 7-10 days before your party. We offer express shipping Australia-wide which takes 2-4 business days depending on your location.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                            <h3 class="font-bold text-gray-900 mb-2">Can I mix and match themes?</h3>
+                            <p class="text-gray-600 text-sm">Absolutely! You can add as many different themes to your cart as you like. Great for joint parties or sibling groups.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                            <h3 class="font-bold text-gray-900 mb-2">What if I have guests with allergies?</h3>
+                            <p class="text-gray-600 text-sm">Use our Customise section or the note field at checkout to specify any dietary requirements (nut-free, gluten-free, etc.). We take allergies very seriously and will modify the contents accordingly.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div>
+                    <div class="bg-white p-8 md:p-10 rounded-3xl shadow-lg border border-gray-100">
+                        <h2 class="font-display text-2xl font-bold text-gray-900 mb-2">Need something special?</h2>
+                        <p class="text-gray-600 mb-8 text-sm">Send us a message for fully custom themes or bulk orders (50+ bags).</p>
+                        
+                        <form onsubmit="event.preventDefault(); showToast('Message sent! We will reply within 24 hours.'); this.reset();" class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                                <input type="text" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                <input type="email" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                                <textarea rows="4" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all resize-none"></textarea>
+                            </div>
+                            <button type="submit" class="w-full py-4 bg-gray-900 text-white rounded-xl font-bold hover:bg-gray-800 transition-colors">Send Inquiry</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-white border-t border-gray-100 py-12 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center text-white">
+                    <i data-lucide="party-popper" class="w-4 h-4"></i>
+                </div>
+                <span class="font-display font-bold text-xl text-gray-900">Happy Party</span>
+            </div>
+            <p class="text-gray-500 text-sm">© 2026 Happy Party AU. Delivering smiles across Australia.</p>
+            <div class="flex gap-4">
+                <a href="#" class="text-gray-400 hover:text-brand-500"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                <a href="#" class="text-gray-400 hover:text-brand-500"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                <a href="#" class="text-gray-400 hover:text-brand-500"><i data-lucide="mail" class="w-5 h-5"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="cart-overlay" class="fixed inset-0 bg-gray-900/50 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300" onclick="toggleCart()"></div>
+    <div id="cart-slideover" class="fixed inset-y-0 right-0 w-full max-w-md bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
+        
+        <!-- Cart Header -->
+        <div class="px-6 py-6 border-b border-gray-100 flex items-center justify-between bg-white">
+            <h2 class="font-display text-2xl font-bold text-gray-900 flex items-center gap-2">
+                <i data-lucide="shopping-cart"></i> Your Cart
+            </h2>
+            <button onclick="toggleCart()" class="p-2 text-gray-400 hover:text-gray-600 bg-gray-50 rounded-full transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+
+        <!-- Cart Items (Scrollable) -->
+        <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 custom-scrollbar bg-gray-50/50">
+            <!-- Items injected by JS -->
+            <div id="empty-cart-msg" class="h-full flex flex-col items-center justify-center text-gray-500">
+                <i data-lucide="shopping-bag" class="w-12 h-12 mb-4 text-gray-300"></i>
+                <p>Your party bag is empty!</p>
+            </div>
+        </div>
+
+        <!-- Checkout Form & Footer (Fixed Bottom) -->
+        <div class="border-t border-gray-100 bg-white p-6 shadow-[0_-10px_40px_rgba(0,0,0,0.05)]">
+            <div id="checkout-form-section" class="hidden">
+                <div class="mb-4">
+                    <div class="flex justify-between text-sm mb-1">
+                        <span class="font-medium text-gray-700">Party Date</span>
+                        <span id="date-warning" class="text-red-500 text-xs font-bold hidden">Too close!</span>
+                    </div>
+                    <input type="date" id="party-date" class="w-full px-4 py-2 border border-gray-200 rounded-lg text-sm outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all" onchange="validateDate()">
+                    <p class="text-xs text-gray-500 mt-1">We need at least 7 days for processing & shipping.</p>
+                </div>
+                
+                <div class="space-y-3 mb-4">
+                    <input type="text" placeholder="Shipping Address" class="w-full px-4 py-2 border border-gray-200 rounded-lg text-sm outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all">
+                    <input type="text" placeholder="Card Number (Simulated)" class="w-full px-4 py-2 border border-gray-200 rounded-lg text-sm outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all">
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center mb-6">
+                <span class="text-gray-500 font-medium">Subtotal</span>
+                <span class="font-display font-bold text-2xl text-gray-900" id="cart-total">$0.00</span>
+            </div>
+            
+            <button id="checkout-btn" onclick="handleCheckoutStep()" disabled class="w-full py-4 bg-brand-500 text-white rounded-xl font-bold hover:bg-brand-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex justify-center items-center gap-2">
+                Proceed to Checkout
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-3 pointer-events-none"></div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Product Data
+        const products = [
+            { id: 'p1', name: 'Clown', price: 12, color: 'bg-red-50', textCol: 'text-red-600', desc: '3D printed clown body w/ springing head, necklace with gem.', items: ['3D Clown toy', 'Gem Necklace'] },
+            { id: 'p2', name: 'Ballerina', price: 15, color: 'bg-pink-50', textCol: 'text-pink-600', desc: 'Choco coins, tiara, lolly bracelets, nail polish.', items: ['Tiara', 'Nail Polish', 'Lolly Bracelet', 'Choco Coins'] },
+            { id: 'p3', name: 'Dinosaur', price: 14, color: 'bg-green-50', textCol: 'text-green-600', desc: 'Choco coins, lolly bracelets, 3D dino.', items: ['3D Dinosaur', 'Lolly Bracelet', 'Choco Coins'] },
+            { id: 'p4', name: 'Timezone', price: 25, color: 'bg-blue-50', textCol: 'text-blue-600', desc: 'Timezone gift card, sticky hand, chocolate coins, 3D dragon, lolly bracelet, mini gameboy.', items: ['Gift Card', 'Mini Gameboy', '3D Dragon', 'Sticky Hand'] },
+            { id: 'p5', name: 'Skate Paradise', price: 14, color: 'bg-purple-50', textCol: 'text-purple-600', desc: '3D printed skate, choco coins, lolly bracelet.', items: ['3D Skate Toy', 'Lolly Bracelet', 'Choco Coins'] },
+            { id: 'p6', name: 'Halloween', price: 13, color: 'bg-orange-50', textCol: 'text-orange-600', desc: '3D printed ghost keyring glow in the dark, eyeball candies, teeth gummies, plastic fangs.', items: ['Glow Ghost Keyring', 'Plastic Fangs', 'Spooky Candies'] },
+            { id: 'p7', name: 'Christmas', price: 12, color: 'bg-emerald-50', textCol: 'text-emerald-600', desc: 'Festive chocolates, reindeer toy, stickers.', items: ['Reindeer Toy', 'Stickers', 'Festive Chocs'] },
+            { id: 'p8', name: 'Easter', price: 13, color: 'bg-yellow-50', textCol: 'text-yellow-600', desc: 'Chocolate eggs, bunny ears, hopping toy.', items: ['Bunny Ears', 'Hopping Toy', 'Choco Eggs'] },
+            { id: 'p9', name: 'Harry Potter', price: 18, color: 'bg-amber-50', textCol: 'text-amber-700', desc: 'Movie ticket, harry head.', items: ['Movie Ticket', 'Harry Head Toy'] },
+        ];
+
+        // State
+        let cart = [];
+        let globalPreferences = new Set();
+        let isCheckoutMode = false;
+
+        // Render Products
+        const productGrid = document.getElementById('product-grid');
+        products.forEach(p => {
+            const card = document.createElement('div');
+            card.className = 'group bg-white rounded-3xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col h-full';
+            card.innerHTML = `
+                <div class="aspect-square relative overflow-hidden bg-gray-100 flex items-center justify-center p-8 ${p.color}">
+                    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-900 to-transparent"></div>
+                    <img src="https://placehold.co/400x400/${p.color.replace('bg-','').split('-')[0]}/ffffff?text=${encodeURIComponent(p.name)}" alt="${p.name}" class="w-full h-full object-contain relative z-10 group-hover:scale-110 transition-transform duration-500 rounded-2xl drop-shadow-lg">
+                    <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full font-bold text-gray-900 shadow-sm z-20">
+                        $${p.price}
+                    </div>
+                </div>
+                <div class="p-6 flex flex-col flex-1">
+                    <h3 class="font-display font-bold text-xl text-gray-900 mb-2">${p.name} Bag</h3>
+                    <p class="text-sm text-gray-600 mb-4 flex-1">${p.desc}</p>
+                    <div class="space-y-1 mb-6">
+                        ${p.items.slice(0,3).map(item => `
+                            <div class="flex items-center text-xs text-gray-500">
+                                <i data-lucide="check" class="w-3 h-3 mr-2 ${p.textCol}"></i> ${item}
+                            </div>
+                        `).join('')}
+                    </div>
+                    <button onclick="addToCart('${p.id}')" class="w-full py-3 bg-gray-50 hover:bg-brand-50 text-gray-900 hover:text-brand-600 font-semibold rounded-xl transition-colors border border-gray-200 hover:border-brand-200 flex items-center justify-center gap-2">
+                        <i data-lucide="plus" class="w-4 h-4"></i> Add to Cart
+                    </button>
+                </div>
+            `;
+            productGrid.appendChild(card);
+        });
+        
+        // Re-init icons for newly added HTML
+        lucide.createIcons();
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            const existingItem = cart.find(item => item.id === productId);
+            if (existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({ ...product, qty: 1 });
+            }
+
+            updateCartUI();
+            showToast(`Added ${product.name} Bag to cart!`);
+            
+            // Pop effect on cart icon
+            const cartBtn = document.querySelector('button[onclick="toggleCart()"]');
+            cartBtn.classList.add('scale-125');
+            setTimeout(() => cartBtn.classList.remove('scale-125'), 200);
+        }
+
+        function updateCartItemQty(productId, delta) {
+            const item = cart.find(i => i.id === productId);
+            if (item) {
+                item.qty += delta;
+                if (item.qty <= 0) {
+                    cart = cart.filter(i => i.id !== productId);
+                }
+                updateCartUI();
+            }
+        }
+
+        function updateCartUI() {
+            const countEl = document.getElementById('cart-count');
+            const container = document.getElementById('cart-items-container');
+            const totalEl = document.getElementById('cart-total');
+            const emptyMsg = document.getElementById('empty-cart-msg');
+            const checkoutBtn = document.getElementById('checkout-btn');
+
+            // Total count
+            const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+            countEl.textContent = totalItems;
+
+            // Total price
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            totalEl.textContent = `$${totalPrice.toFixed(2)}`;
+
+            if (cart.length === 0) {
+                emptyMsg.style.display = 'flex';
+                Array.from(container.children).forEach(child => {
+                    if (child.id !== 'empty-cart-msg') child.remove();
+                });
+                checkoutBtn.disabled = true;
+                resetCheckoutForm();
+            } else {
+                emptyMsg.style.display = 'none';
+                checkoutBtn.disabled = false;
+                
+                // Clear existing items
+                Array.from(container.children).forEach(child => {
+                    if (child.id !== 'empty-cart-msg') child.remove();
+                });
+
+                // Add active preferences banner if any exist
+                if(globalPreferences.size > 0) {
+                    const prefBanner = document.createElement('div');
+                    prefBanner.className = 'bg-brand-50 border border-brand-100 rounded-lg p-3 mb-4 flex items-start gap-2';
+                    prefBanner.innerHTML = `
+                        <i data-lucide="info" class="w-4 h-4 text-brand-500 mt-0.5 shrink-0"></i>
+                        <p class="text-xs text-brand-700">Custom preferences applied: <strong>${Array.from(globalPreferences).map(formatPref).join(', ')}</strong>. We will adapt your bags accordingly.</p>
+                    `;
+                    container.appendChild(prefBanner);
+                }
+
+                // Render items
+                cart.forEach(item => {
+                    const el = document.createElement('div');
+                    el.className = 'flex items-center gap-4 bg-white p-4 rounded-2xl shadow-sm border border-gray-100 mb-3';
+                    el.innerHTML = `
+                        <div class="w-16 h-16 rounded-xl ${item.color} flex items-center justify-center p-2">
+                            <img src="https://placehold.co/100x100/${item.color.replace('bg-','').split('-')[0]}/ffffff?text=${encodeURIComponent(item.name)}" alt="${item.name}" class="w-full h-full object-contain drop-shadow-sm">
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-gray-900 text-sm">${item.name} Bag</h4>
+                            <p class="text-brand-500 font-semibold text-sm">$${item.price}</p>
+                        </div>
+                        <div class="flex items-center gap-2 bg-gray-50 rounded-lg p-1 border border-gray-200">
+                            <button onclick="updateCartItemQty('${item.id}', -1)" class="w-6 h-6 flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-200 rounded-md transition-colors">-</button>
+                            <span class="w-4 text-center text-sm font-medium">${item.qty}</span>
+                            <button onclick="updateCartItemQty('${item.id}', 1)" class="w-6 h-6 flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-200 rounded-md transition-colors">+</button>
+                        </div>
+                    `;
+                    container.appendChild(el);
+                });
+                lucide.createIcons(); // Re-init icons inside cart
+            }
+        }
+
+        function toggleCart() {
+            const overlay = document.getElementById('cart-overlay');
+            const slideover = document.getElementById('cart-slideover');
+            
+            if (slideover.classList.contains('translate-x-full')) {
+                // Open
+                overlay.classList.remove('hidden');
+                // Small delay to allow display:block to apply before opacity transition
+                setTimeout(() => {
+                    overlay.classList.remove('opacity-0');
+                    slideover.classList.remove('translate-x-full');
+                }, 10);
+            } else {
+                // Close
+                overlay.classList.add('opacity-0');
+                slideover.classList.add('translate-x-full');
+                setTimeout(() => {
+                    overlay.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        function validateDate() {
+            const dateInput = document.getElementById('party-date').value;
+            const warning = document.getElementById('date-warning');
+            const checkoutBtn = document.getElementById('checkout-btn');
+            
+            if (!dateInput) return false;
+
+            const selectedDate = new Date(dateInput);
+            const today = new Date();
+            const diffTime = selectedDate - today;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+
+            if (diffDays < 7) {
+                warning.classList.remove('hidden');
+                warning.textContent = diffDays < 0 ? 'Date is in the past' : 'Too close! Need 7 days.';
+                checkoutBtn.disabled = true;
+                return false;
+            } else {
+                warning.classList.add('hidden');
+                checkoutBtn.disabled = false;
+                return true;
+            }
+        }
+
+        function handleCheckoutStep() {
+            const checkoutSection = document.getElementById('checkout-form-section');
+            const btn = document.getElementById('checkout-btn');
+
+            if (!isCheckoutMode) {
+                // Enter checkout mode
+                isCheckoutMode = true;
+                checkoutSection.classList.remove('hidden');
+                btn.innerHTML = `<i data-lucide="lock" class="w-4 h-4"></i> Complete Order`;
+                btn.disabled = true; // wait for date validation
+                lucide.createIcons();
+                // scroll cart to bottom
+                document.getElementById('cart-items-container').scrollTop = document.getElementById('cart-items-container').scrollHeight;
+            } else {
+                // Submit order
+                if (validateDate()) {
+                    btn.innerHTML = `<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Processing...`;
+                    lucide.createIcons();
+                    setTimeout(() => {
+                        cart = [];
+                        updateCartUI();
+                        toggleCart();
+                        showToast('Order successful
