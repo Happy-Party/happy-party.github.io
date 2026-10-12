@@ -387,7 +387,7 @@
         const products = [
             { id: 'p1', name: 'Clown', price: 12, color: 'bg-red-50', textCol: 'text-red-600', desc: '3D printed clown body w/ springing head, necklace with gem.', items: ['3D Clown toy', 'Gem Necklace'] },
             { id: 'p2', name: 'Ballerina', price: 15, color: 'bg-pink-50', textCol: 'text-pink-600', desc: 'Choco coins, tiara, lolly bracelets, nail polish.', items: ['Tiara', 'Nail Polish', 'Lolly Bracelet', 'Choco Coins'] },
-            { id: 'p3', name: 'Dinosaur', price: 14, color: 'bg-green-50', textCol: 'text-green-600', desc: 'Choco coins, lolly bracelets, 3D dino.', items: ['3D Dinosaur', 'Lolly Bracelet', 'Choco Coins'] },
+            { id: 'p3', name: 'Dinosaur', price: 14, color: 'bg-green-50', textCol: 'text-green-600', desc: 'Choco coins, lolly bracelets, 3D dino.', items: ['3D Dinosaur', 'Lolly Bracelet', 'Choco Coins'], image: 'watermarked_img_3227941079437726468.jpg' },
             { id: 'p4', name: 'Timezone', price: 25, color: 'bg-blue-50', textCol: 'text-blue-600', desc: 'Timezone gift card, sticky hand, chocolate coins, 3D dragon, lolly bracelet, mini gameboy.', items: ['Gift Card', 'Mini Gameboy', '3D Dragon', 'Sticky Hand'] },
             { id: 'p5', name: 'Skate Paradise', price: 14, color: 'bg-purple-50', textCol: 'text-purple-600', desc: '3D printed skate, choco coins, lolly bracelet.', items: ['3D Skate Toy', 'Lolly Bracelet', 'Choco Coins'] },
             { id: 'p6', name: 'Halloween', price: 13, color: 'bg-orange-50', textCol: 'text-orange-600', desc: '3D printed ghost keyring glow in the dark, eyeball candies, teeth gummies, plastic fangs.', items: ['Glow Ghost Keyring', 'Plastic Fangs', 'Spooky Candies'] },
@@ -404,12 +404,15 @@
         // Render Products
         const productGrid = document.getElementById('product-grid');
         products.forEach(p => {
+            const imgSrc = p.image ? p.image : `https://placehold.co/400x400/${p.color.replace('bg-','').split('-')[0]}/ffffff?text=${encodeURIComponent(p.name)}`;
+            const imgClass = p.image ? 'w-full h-full object-cover relative z-10 group-hover:scale-110 transition-transform duration-500 rounded-2xl drop-shadow-lg' : 'w-full h-full object-contain relative z-10 group-hover:scale-110 transition-transform duration-500 rounded-2xl drop-shadow-lg';
+
             const card = document.createElement('div');
             card.className = 'group bg-white rounded-3xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col h-full';
             card.innerHTML = `
                 <div class="aspect-square relative overflow-hidden bg-gray-100 flex items-center justify-center p-8 ${p.color}">
                     <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-900 to-transparent"></div>
-                    <img src="https://placehold.co/400x400/${p.color.replace('bg-','').split('-')[0]}/ffffff?text=${encodeURIComponent(p.name)}" alt="${p.name}" class="w-full h-full object-contain relative z-10 group-hover:scale-110 transition-transform duration-500 rounded-2xl drop-shadow-lg">
+                    <img src="${imgSrc}" alt="${p.name}" class="${imgClass}">
                     <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full font-bold text-gray-900 shadow-sm z-20">
                         $${p.price}
                     </div>
@@ -510,11 +513,14 @@
 
                 // Render items
                 cart.forEach(item => {
+                    const cartImgSrc = item.image ? item.image : `https://placehold.co/100x100/${item.color.replace('bg-','').split('-')[0]}/ffffff?text=${encodeURIComponent(item.name)}`;
+                    const cartImgClass = item.image ? 'w-full h-full object-cover drop-shadow-sm rounded-lg' : 'w-full h-full object-contain drop-shadow-sm';
+
                     const el = document.createElement('div');
                     el.className = 'flex items-center gap-4 bg-white p-4 rounded-2xl shadow-sm border border-gray-100 mb-3';
                     el.innerHTML = `
-                        <div class="w-16 h-16 rounded-xl ${item.color} flex items-center justify-center p-2">
-                            <img src="https://placehold.co/100x100/${item.color.replace('bg-','').split('-')[0]}/ffffff?text=${encodeURIComponent(item.name)}" alt="${item.name}" class="w-full h-full object-contain drop-shadow-sm">
+                        <div class="w-16 h-16 rounded-xl ${item.color} flex items-center justify-center p-2 overflow-hidden">
+                            <img src="${cartImgSrc}" alt="${item.name}" class="${cartImgClass}">
                         </div>
                         <div class="flex-1">
                             <h4 class="font-bold text-gray-900 text-sm">${item.name} Bag</h4>
