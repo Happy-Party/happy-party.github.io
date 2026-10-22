@@ -315,6 +315,7 @@
                 <a href="#" class="text-gray-400 hover:text-brand-500"><i data-lucide="mail" class="w-5 h-5"></i></a>
             </div>
         </div>
+        <a href="terms.html" class="text-gray-500 hover:text-brand-500 text-sm font-medium transition-colors">Terms & Conditions</a>
     </footer>
 
     <div id="cart-overlay" class="fixed inset-0 bg-gray-900/50 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300" onclick="toggleCart()"></div>
@@ -569,28 +570,32 @@
         }
 
         function validateDate() {
-            const dateInput = document.getElementById('party-date').value;
-            const warning = document.getElementById('date-warning');
-            const checkoutBtn = document.getElementById('checkout-btn');
-            
-            if (!dateInput) return false;
+    const dateInput = document.getElementById('party-date').value;
+    const termsChecked = document.getElementById('terms-checkbox')?.checked;
+    const warning = document.getElementById('date-warning');
+    const checkoutBtn = document.getElementById('checkout-btn');
+    
+    if (!dateInput) {
+        checkoutBtn.disabled = true;
+        return false;
+    }
 
-            const selectedDate = new Date(dateInput);
-            const today = new Date();
-            const diffTime = selectedDate - today;
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+    const selectedDate = new Date(dateInput);
+    const today = new Date();
+    const diffTime = selectedDate - today;
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
 
-            if (diffDays < 7) {
-                warning.classList.remove('hidden');
-                warning.textContent = diffDays < 0 ? 'Date is in the past' : 'Too close! Need 7 days.';
-                checkoutBtn.disabled = true;
-                return false;
-            } else {
-                warning.classList.add('hidden');
-                checkoutBtn.disabled = false;
-                return true;
-            }
-        }
+    if (diffDays < 7) {
+        warning.classList.remove('hidden');
+        warning.textContent = diffDays < 0 ? 'Date is in the past' : 'Too close! Need 7 days.';
+        checkoutBtn.disabled = true;
+        return false;
+    } else {
+        warning.classList.add('hidden');
+        checkoutBtn.disabled = !termsChecked; // Requires T&C checkbox to be ticked
+        return termsChecked;
+    }
+}
 
         function handleCheckoutStep() {
             const checkoutSection = document.getElementById('checkout-form-section');
