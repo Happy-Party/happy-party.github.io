@@ -132,6 +132,34 @@
         </div>
     </section>
 
+    <!-- Interactive Pain-Point Bridge Banner -->
+    <section class="py-12 bg-gray-900 text-white relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <span class="text-brand-400 text-xs font-bold uppercase tracking-widest mb-2 block">Quick Reality Check</span>
+            <h2 class="font-display text-2xl md:text-4xl font-extrabold mb-6">
+                Be honest: how much time did you spend putting together party bags last time?
+            </h2>
+            
+            <!-- Interactive Poll Buttons -->
+            <div id="time-poll" class="flex flex-wrap justify-center gap-3 mb-4">
+                <button onclick="selectPollAnswer(this, '1-2 hours')" class="poll-btn px-5 py-3 rounded-xl bg-gray-800 hover:bg-brand-500 border border-gray-700 hover:border-brand-400 text-sm font-semibold transition-all">
+                    🕒 1–2 hours at the shops
+                </button>
+                <button onclick="selectPollAnswer(this, '3+ hours')" class="poll-btn px-5 py-3 rounded-xl bg-gray-800 hover:bg-brand-500 border border-gray-700 hover:border-brand-400 text-sm font-semibold transition-all">
+                    🚗 3+ hours &amp; multiple stores
+                </button>
+                <button onclick="selectPollAnswer(this, 'midnight')" class="poll-btn px-5 py-3 rounded-xl bg-gray-800 hover:bg-brand-500 border border-gray-700 hover:border-brand-400 text-sm font-semibold transition-all">
+                    😴 Up past midnight the night before
+                </button>
+            </div>
+
+            <!-- Dynamic Response (Hidden until clicked) -->
+            <p id="poll-response" class="hidden text-accent-yellow font-medium text-base md:text-lg mt-4 animate-pulse">
+                Never again! Pick a theme below and cross party bags off your list in the next 60 seconds. 👇
+            </p>
+        </div>
+    </section>
+
     <section id="collections" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -309,7 +337,7 @@
                 <span class="font-display font-bold text-xl text-gray-900">Happy Party</span>
             </div>
             <p class="text-gray-500 text-sm">© 2026 Happy Party AU. Delivering smiles across Australia.</p>
-            <p class="text-gray-500 text-sm"><a href="terms.html" class="text-gray-500 hover:text-brand-500 text-sm font-medium transition-colors">Terms & Conditions</a></p>
+            <p class="text-gray-500 text-sm"><a href="terms.html" class="text-gray-500 hover:text-brand-500 text-sm font-medium transition-colors">Terms &amp; Conditions</a></p>
             <div class="flex gap-4">
                 <a href="#" class="text-gray-400 hover:text-brand-500"><i data-lucide="instagram" class="w-5 h-5"></i></a>
                 <a href="#" class="text-gray-400 hover:text-brand-500"><i data-lucide="facebook" class="w-5 h-5"></i></a>
@@ -350,21 +378,30 @@
                         <span id="date-warning" class="text-red-500 text-xs font-bold hidden">Too close!</span>
                     </div>
                     <input type="date" id="party-date" class="w-full px-4 py-2 border border-gray-200 rounded-lg text-sm outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all" onchange="validateDate()">
-                    <p class="text-xs text-gray-500 mt-1">We need at least 7 days for processing & shipping.</p>
+                    <p class="text-xs text-gray-500 mt-1">We need at least 7 days for processing &amp; shipping.</p>
                 </div>
                 
                 <div class="space-y-3 mb-4">
                     <input type="text" placeholder="Shipping Address" class="w-full px-4 py-2 border border-gray-200 rounded-lg text-sm outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all">
                     <input type="text" placeholder="Card Number (Simulated)" class="w-full px-4 py-2 border border-gray-200 rounded-lg text-sm outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all">
                     <label class="flex items-start gap-2.5 text-xs text-gray-600 cursor-pointer pt-2">
-    <input type="checkbox" id="terms-checkbox" onchange="validateDate()" class="mt-0.5 rounded border-gray-300 text-brand-500 focus:ring-brand-500">
-    <span>
-        I confirm the recipients are <strong>aged 3+</strong>, and I agree to the 
-        <a href="terms.html" target="_blank" class="text-brand-600 underline hover:text-brand-700 font-semibold">Terms & Conditions</a> 
-        (including choking hazard &amp; allergen disclaimers).
-    </span>
-</label>
+                        <input type="checkbox" id="terms-checkbox" onchange="validateDate()" class="mt-0.5 rounded border-gray-300 text-brand-500 focus:ring-brand-500">
+                        <span>
+                            I confirm the recipients are <strong>aged 3+</strong>, and I agree to the 
+                            <a href="terms.html" target="_blank" class="text-brand-600 underline hover:text-brand-700 font-semibold">Terms &amp; Conditions</a> 
+                            (including choking hazard &amp; allergen disclaimers).
+                        </span>
+                    </label>
                 </div>
+            </div>
+
+            <!-- Time-Saved Reassurance Badge -->
+            <div id="time-saved-banner" class="hidden mb-4 px-4 py-2.5 bg-green-50 border border-green-200 rounded-xl flex items-center justify-between text-xs text-green-800">
+                <span class="flex items-center gap-2 font-medium">
+                    <i data-lucide="clock" class="w-4 h-4 text-green-600 shrink-0"></i>
+                    Time saved on this order:
+                </span>
+                <span id="time-saved-value" class="font-bold text-green-700">~2.5 hrs of shopping &amp; packing</span>
             </div>
 
             <div class="flex justify-between items-center mb-6">
@@ -392,6 +429,23 @@
         }
         
         refreshIcons();
+
+        // Interactive Pain-Point Poll Handler
+        function selectPollAnswer(btnEl, choice) {
+            document.querySelectorAll('.poll-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-500', 'border-brand-400', 'ring-2', 'ring-brand-300');
+                btn.classList.add('bg-gray-800', 'border-gray-700');
+            });
+            btnEl.classList.remove('bg-gray-800', 'border-gray-700');
+            btnEl.classList.add('bg-brand-500', 'border-brand-400', 'ring-2', 'ring-brand-300');
+
+            const responseEl = document.getElementById('poll-response');
+            responseEl.classList.remove('hidden');
+
+            setTimeout(() => {
+                document.getElementById('collections').scrollIntoView({ behavior: 'smooth' });
+            }, 1200);
+        }
 
         // Product Data
         const products = [
@@ -485,6 +539,8 @@
             const totalEl = document.getElementById('cart-total');
             const emptyMsg = document.getElementById('empty-cart-msg');
             const checkoutBtn = document.getElementById('checkout-btn');
+            const timeSavedBanner = document.getElementById('time-saved-banner');
+            const timeSavedValue = document.getElementById('time-saved-value');
 
             // Total count
             const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
@@ -496,6 +552,7 @@
 
             if (cart.length === 0) {
                 emptyMsg.style.display = 'flex';
+                timeSavedBanner.classList.add('hidden');
                 Array.from(container.children).forEach(child => {
                     if (child.id !== 'empty-cart-msg') child.remove();
                 });
@@ -503,7 +560,12 @@
                 resetCheckoutForm();
             } else {
                 emptyMsg.style.display = 'none';
-                checkoutBtn.disabled = false;
+                checkoutBtn.disabled = isCheckoutMode ? !validateDate() : false;
+
+                // Calculate estimated time saved (1.5 hrs base shopping trip + ~6 mins per bag packed)
+                const hoursSaved = Math.max(1.5, Math.round((1.5 + (totalItems * 0.1)) * 2) / 2);
+                timeSavedValue.textContent = `~${hoursSaved} hrs of shopping & packing`;
+                timeSavedBanner.classList.remove('hidden');
                 
                 // Clear existing items
                 Array.from(container.children).forEach(child => {
@@ -571,32 +633,32 @@
         }
 
         function validateDate() {
-    const dateInput = document.getElementById('party-date').value;
-    const termsChecked = document.getElementById('terms-checkbox')?.checked;
-    const warning = document.getElementById('date-warning');
-    const checkoutBtn = document.getElementById('checkout-btn');
-    
-    if (!dateInput) {
-        checkoutBtn.disabled = true;
-        return false;
-    }
+            const dateInput = document.getElementById('party-date').value;
+            const termsChecked = document.getElementById('terms-checkbox')?.checked;
+            const warning = document.getElementById('date-warning');
+            const checkoutBtn = document.getElementById('checkout-btn');
+            
+            if (!dateInput) {
+                checkoutBtn.disabled = true;
+                return false;
+            }
 
-    const selectedDate = new Date(dateInput);
-    const today = new Date();
-    const diffTime = selectedDate - today;
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+            const selectedDate = new Date(dateInput);
+            const today = new Date();
+            const diffTime = selectedDate - today;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
 
-    if (diffDays < 7) {
-        warning.classList.remove('hidden');
-        warning.textContent = diffDays < 0 ? 'Date is in the past' : 'Too close! Need 7 days.';
-        checkoutBtn.disabled = true;
-        return false;
-    } else {
-        warning.classList.add('hidden');
-        checkoutBtn.disabled = !termsChecked; // Requires T&C checkbox to be ticked
-        return termsChecked;
-    }
-}
+            if (diffDays < 7) {
+                warning.classList.remove('hidden');
+                warning.textContent = diffDays < 0 ? 'Date is in the past' : 'Too close! Need 7 days.';
+                checkoutBtn.disabled = true;
+                return false;
+            } else {
+                warning.classList.add('hidden');
+                checkoutBtn.disabled = !termsChecked; // Requires T&C checkbox to be ticked
+                return termsChecked;
+            }
+        }
 
         function handleCheckoutStep() {
             const checkoutSection = document.getElementById('checkout-form-section');
@@ -610,79 +672,4 @@
                 btn.disabled = true; // wait for date validation
                 refreshIcons();
                 // scroll cart to bottom
-                document.getElementById('cart-items-container').scrollTop = document.getElementById('cart-items-container').scrollHeight;
-            } else {
-                // Submit order
-                if (validateDate()) {
-                    btn.innerHTML = `<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Processing...`;
-                    refreshIcons();
-                    setTimeout(() => {
-                        cart = [];
-                        updateCartUI();
-                        toggleCart();
-                        showToast('Order successfully placed! You will receive a confirmation email shortly.');
-                        resetCheckoutForm();
-                    }, 1500);
-                }
-            }
-        }
-
-        function resetCheckoutForm() {
-            isCheckoutMode = false;
-            document.getElementById('checkout-form-section').classList.add('hidden');
-            const btn = document.getElementById('checkout-btn');
-            btn.innerHTML = 'Proceed to Checkout';
-            document.getElementById('party-date').value = '';
-            document.getElementById('date-warning').classList.add('hidden');
-        }
-
-        function showToast(message) {
-            const container = document.getElementById('toast-container');
-            const toast = document.createElement('div');
-            toast.className = 'bg-gray-900 text-white px-6 py-3 rounded-xl shadow-lg flex items-center gap-3 text-sm font-medium toast-enter';
-            toast.innerHTML = `<i data-lucide="check-circle-2" class="text-green-400 w-5 h-5"></i> ${message}`;
-            
-            container.appendChild(toast);
-            refreshIcons();
-
-            // Trigger reflow for animation
-            void toast.offsetWidth;
-            toast.classList.remove('toast-enter');
-            toast.classList.add('toast-enter-active');
-
-            setTimeout(() => {
-                toast.classList.remove('toast-enter-active');
-                toast.classList.add('toast-exit-active');
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
-        }
-
-        function formatPref(prefStr) {
-            return prefStr.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-        }
-
-        // Setup Preference Buttons
-        document.querySelectorAll('.pref-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const pref = e.target.dataset.pref;
-                if (globalPreferences.has(pref)) {
-                    globalPreferences.delete(pref);
-                    e.target.classList.remove('bg-brand-50', 'border-brand-500', 'text-brand-700');
-                    e.target.classList.add('border-gray-200', 'text-gray-600');
-                } else {
-                    globalPreferences.add(pref);
-                    e.target.classList.remove('border-gray-200', 'text-gray-600');
-                    e.target.classList.add('bg-brand-50', 'border-brand-500', 'text-brand-700');
-                }
-                
-                // If cart has items, update UI to show new banner
-                if (cart.length > 0) {
-                    updateCartUI();
-                }
-                
-                showToast(globalPreferences.has(pref) ? `${formatPref(pref)} preference added` : `${formatPref(pref)} preference removed`);
-            });
-        });
-    </script>
-</body>
-</html>
+                document.get
